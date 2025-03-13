@@ -27,7 +27,7 @@ const LatestVisas = () => {
       </h2>
       <p className="text-xl text-center text-gray-300 w-[90%] sm:w-[80%] md:w-[55%] mx-auto mb-8">
         Stay informed with the most up-to-date visa information, including
-        requirements, fees, and application details.
+        requirements, fees,and application details.
       </p>
 
       <div className="mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-4">
