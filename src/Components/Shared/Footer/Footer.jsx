@@ -20,7 +20,7 @@ const Footer = () => {
       <div className="container mx-auto z-0">
         <div data-aos="fade-down" className="text-center z-0">
           <h3 className="flex justify-center items-center gap-3 font-bold text-3xl mb-3">
-            Visa<span className="text-primary">Ease</span>
+            Easy<span className="text-primary">Visa</span>
           </h3>
           <p className="font-medium text-base">
             Simplifying the visa application process with smart and efficient
@@ -158,7 +158,7 @@ const Footer = () => {
         </div>
 
         <p className="text-center mt-10">
-          &copy; {new Date().getFullYear()} VisaEase. All Rights Reserved.
+          &copy; {new Date().getFullYear()} EasyVisa. All Rights Reserved.
         </p>
       </div>
     </div>
