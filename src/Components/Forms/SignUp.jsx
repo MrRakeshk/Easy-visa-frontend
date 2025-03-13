@@ -53,7 +53,7 @@ const SignUp = () => {
     creationTime,
     lastSignInTime
   ) => {
-    fetch("https://visaease.vercel.app/Users", {
+    fetch("https://easy-visa-backend.vercel.app/Users", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -117,7 +117,7 @@ const SignUp = () => {
       }`}
     >
       <Helmet>
-        <title>VisaEase | Sign Up</title>
+        <title>EasyVisa | Sign Up</title>
       </Helmet>
       <div
         className={`flex ${
