@@ -12,7 +12,7 @@ const AllVisa = () => {
   const { theme, Toast } = useContext(AuthContext);
   useEffect(() => {
     window.scrollTo(0, 0);
-    fetch("https://visaease.vercel.app/Visa")
+    fetch("https://easy-visa-backend.vercel.app/Visa")
       .then((response) => response.json())
       .then((data) => {
         setVisas(data);
@@ -43,7 +43,7 @@ const AllVisa = () => {
       }`}
     >
       <Helmet>
-        <title>VisaEase | All-Visa</title>
+        <title>EasyVisa | All-Visa</title>
       </Helmet>
       <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-4 text-primary">
         Explore All Available Visas 🌍💼
