@@ -13,7 +13,7 @@ const Home = () => {
   return (
     <div className="container mx-auto">
       <Helmet>
-        <title>VisaEase | Home</title>
+        <title>EasyVisa | Home</title>
       </Helmet>
       <Banner></Banner>
       <LatestVisa></LatestVisa>
