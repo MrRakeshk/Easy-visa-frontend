@@ -43,7 +43,7 @@ const AddVisa = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     visaData.addedBy = user.email;
-    fetch("https://visaease.vercel.app/Visa", {
+    fetch("https://easy-visa-backend.vercel.app/Visa", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(visaData),
