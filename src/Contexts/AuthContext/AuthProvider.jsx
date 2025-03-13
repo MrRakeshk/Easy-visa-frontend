@@ -1,5 +1,4 @@
-import { createContext, useState } from "react";
-import { useEffect } from "react";
+import { createContext, useState, useEffect, useCallback } from "react";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
@@ -12,6 +11,7 @@ import {
 } from "firebase/auth";
 import { auth } from "../../API/firebase.init.js";
 import { toast, Flip } from "react-toastify";
+
 export const AuthContext = createContext(null);
 const provider = new GoogleAuthProvider();
 
@@ -19,13 +19,10 @@ const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
+
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
-      if (user) {
-        setUser(user);
-      } else {
-        setUser(null);
-      }
+      setUser(user);
       setLoading(false);
     });
     return () => unsubscribe();
@@ -39,28 +36,52 @@ const AuthProvider = ({ children }) => {
   const toggleTheme = () => {
     setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
   };
-  const createUser = (email, password) => {
-    return createUserWithEmailAndPassword(auth, email, password);
-  };
-  const signInUser = (email, password) => {
-    return signInWithEmailAndPassword(auth, email, password);
-  };
-  const signOutUser = () => {
-    return signOut(auth);
-  };
-  const signInWithGoogle = () => {
+
+  const createUser = useCallback(async (email, password) => {
+    try {
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      return userCredential;
+    } catch (error) {
+      console.error(error.message);
+      throw new Error(error.message); // You can handle the error gracefully here.
+    }
+  }, []);
+
+  const signInUser = useCallback(async (email, password) => {
+    try {
+      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      return userCredential;
+    } catch (error) {
+      console.error(error.message);
+      throw new Error(error.message); // Handle errors like invalid credentials
+    }
+  }, []);
+
+  const signOutUser = useCallback(async () => {
+    try {
+      await signOut(auth);
+    } catch (error) {
+      console.error(error.message);
+      throw new Error(error.message);
+    }
+  }, []);
+
+  const signInWithGoogle = useCallback(() => {
     return signInWithPopup(auth, provider);
-  };
-  const resetPassword = (email) => {
+  }, []);
+
+  const resetPassword = useCallback((email) => {
     return sendPasswordResetEmail(auth, email);
-  };
-  const updateUserProfile = (name, photoURL) => {
+  }, []);
+
+  const updateUserProfile = useCallback((name, photoURL) => {
     return updateProfile(auth.currentUser, {
       displayName: name,
       photoURL: photoURL,
     });
-  };
-  const Toast = (message, type) => {
+  }, []);
+
+  const Toast = (message, type = "info") => {
     toast[type](message, {
       position: "top-center",
       autoClose: 1500,
@@ -75,6 +96,7 @@ const AuthProvider = ({ children }) => {
       bodyClassName: "font-medium text-lg",
     });
   };
+
   const authInfo = {
     user,
     createUser,
@@ -91,9 +113,8 @@ const AuthProvider = ({ children }) => {
     toggleTheme,
     resetPassword,
   };
-  return (
-    <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
-  );
+
+  return <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>;
 };
 
 export default AuthProvider;
