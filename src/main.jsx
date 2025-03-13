@@ -70,7 +70,7 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`https://easy-visa-server.vercel.app/Visa/${params.id}`),
+          fetch(`https://easy-visa-backend.vercel.app/Visa/${params.id}`),
       },
       {
         path: "/forgot-password",
