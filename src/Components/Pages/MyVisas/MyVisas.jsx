@@ -40,7 +40,7 @@ const MyAddedVisas = () => {
   }, []);
 
   useEffect(() => {
-    fetch(`https://visaease.vercel.app/Visa`)
+    fetch(`https://easy-visa-backend.vercel.app/Visa`)
       .then((response) => response.json())
       .then((data) => {
         const userVisas = data.filter((visa) => visa.addedBy === user.email);
@@ -110,7 +110,7 @@ const MyAddedVisas = () => {
     e.preventDefault();
     const updatedVisa = { ...visaData };
     console.log(updatedVisa);
-    fetch(`https://visaease.vercel.app/Visa/${selectedVisa._id}`, {
+    fetch(`https://easy-visa-backend.vercel.app/Visa/${selectedVisa._id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(updatedVisa),
@@ -153,7 +153,7 @@ const MyAddedVisas = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`https://visaease.vercel.app/Visa/${visaId}`, {
+        fetch(`https://easy-visa-backend.vercel.app/Visa/${visaId}`, {
           method: "DELETE",
         })
           .then(() => {
@@ -176,7 +176,7 @@ const MyAddedVisas = () => {
       } mx-auto px-4`}
     >
       <Helmet>
-        <title>VisaEase | My-Visa </title>
+        <title>EasyVisa | My-Visa </title>
       </Helmet>
       <h1
         data-aos="zoom-in"
