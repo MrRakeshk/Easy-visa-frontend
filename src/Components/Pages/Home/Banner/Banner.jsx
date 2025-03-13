@@ -23,7 +23,7 @@ const Banner = () => {
       id: "slide2",
       title: "Fast & Reliable Processing",
       description:
-        "Get your visa faster with our streamlined processing. Trusted by thousands, VisaEase ensures timely and accurate results every time.",
+        "Get your visa faster with our streamlined processing. Trusted by thousands, EasyVisa ensures timely and accurate results every time.",
       buttonText: "Check Processing Times",
       imgSrc: slide2,
     },
@@ -31,7 +31,7 @@ const Banner = () => {
       id: "slide3",
       title: "Your Gateway to the World",
       description:
-        "Unlock endless possibilities with VisaEase. From travel to work visas, we’ve got you covered. Start your journey today!",
+        "Unlock endless possibilities with EasyVisa. From travel to work visas, we’ve got you covered. Start your journey today!",
       buttonText: "Get Started",
       imgSrc: slide3,
     },
