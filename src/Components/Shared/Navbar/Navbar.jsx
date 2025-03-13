@@ -243,7 +243,7 @@ const NavBar = () => {
           to={"/"}
           className="text-black flex items-center gap-2 px-3 py-2 sm:px-4 sm:py-2 rounded-lg font-bold bg-white hover:border-2 hover:border-black text-lg sm:text-xl"
         >
-          Visa <span className="text-primary">Ease</span>
+          Easy <span className="text-primary">Visa</span>
         </Link>
       </div>
       <div className="navbar-center hidden lg:flex">{navElements}</div>
