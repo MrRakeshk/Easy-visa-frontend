@@ -62,7 +62,7 @@ const Login = () => {
       }`}
     >
       <Helmet>
-        <title>VisaEase | Login</title>
+        <title>EasyVisa | Login</title>
       </Helmet>
       <div
         className={`flex w-full max-w-5xl shadow-lg ${
@@ -76,7 +76,7 @@ const Login = () => {
           <img src={logo} className="w-[75%] mx-auto mb-2 rounded-xl" alt="" />
           <h2 className="text-4xl font-bold mb-4">Welcome Back!</h2>
           <p className="text-center text-lg">
-            Log in to VisaEase and simplify your visa application process with
+            Log in to EasyVisa and simplify your visa application process with
             ease and confidence!
           </p>
         </div>
@@ -190,7 +190,7 @@ const Login = () => {
           </button>
 
           <p className="mt-6 text-center text-sm">
-            New to VisaEase?{" "}
+            New to EasyVisa?{" "}
             <Link
               to="/signup"
               state={{ from: attemptedPath }}
