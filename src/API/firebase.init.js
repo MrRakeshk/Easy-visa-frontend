@@ -1,15 +1,14 @@
 import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
+import { getAuth } from "firebase/auth";
+
 const firebaseConfig = {
-  VITE_apiKey: "AIzaSyAHWwg1vxloTSSG_X5B3NwrufUH8zBqGVI",
-  authDomain: "easy-visa-front.firebaseapp.com",
-  projectId: "easy-visa-front",
-  storageBucket: "easy-visa-front.firebasestorage.app",
-  messagingSenderId: "835150769339",
-  appId: "1:835150769339:web:ceead1e9b1953e9b9fcd9e",
-  measurementId: "G-NNLT003KRW"
+  apiKey: import.meta.env.VITE_apiKey,
+  authDomain: import.meta.env.VITE_authDomain,
+  projectId: import.meta.env.VITE_projectId,
+  storageBucket: import.meta.env.VITE_storageBucket,
+  messagingSenderId: import.meta.env.VITE_messagingSenderId,
+  appId: import.meta.env.VITE_appId,
 };
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
+export const auth = getAuth(app);
