@@ -23,7 +23,7 @@ const MyVisaApplications = () => {
     Aos.init({ duration: 500 });
   }, []);
   useEffect(() => {
-    fetch(`https://visaease.vercel.app/Applications`)
+    fetch(`https://easy-visa-backend.vercel.app/Applications`)
       .then((response) => response.json())
       .then((data) => {
         const userApplications = data.filter(
@@ -46,7 +46,7 @@ const MyVisaApplications = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`https://visaease.vercel.app/Applications/${applicationId}`, {
+        fetch(`https://easy-visa-backend.vercel.app/Applications/${applicationId}`, {
           method: "DELETE",
         })
           .then((result) => {
@@ -73,7 +73,7 @@ const MyVisaApplications = () => {
       }`}
     >
       <Helmet>
-        <title>VisaEase | My-Applications</title>
+        <title>EasyVisa | My-Applications</title>
       </Helmet>
       <h1
         data-aos="zoom-in"
