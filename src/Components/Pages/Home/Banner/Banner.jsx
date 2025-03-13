@@ -1,9 +1,9 @@
 import React, { useEffect, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../../Contexts/AuthContext/AuthProvider";
-import slide1 from "../../../../Assets/Slide1.webp";
-import slide2 from "../../../../Assets/Slide2.jpg";
-import slide3 from "../../../../Assets/Slide3.jpg";
+import slide1 from "../../../../assets/Slide1.webp";
+import slide2 from "../../../../assets/Slide2.jpg";
+import slide3 from "../../../../assets/Slide3.jpg";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { Slide } from "react-awesome-reveal";
