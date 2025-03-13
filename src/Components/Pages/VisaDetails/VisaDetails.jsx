@@ -44,7 +44,7 @@ const VisaDetails = () => {
       visaId: _id,
       ...visaWithoutId,
     };
-    fetch("https://visaease.vercel.app/Applications", {
+    fetch("https://easy-visa-backend.vercel.app/Applications", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(applicationData),
@@ -91,7 +91,7 @@ const VisaDetails = () => {
       }`}
     >
       <Helmet>
-        <title>VisaEase | Visa-Details | {visa._id}</title>
+        <title>EasyVisa | Visa-Details | {visa._id}</title>
       </Helmet>
       <h1
         data-aos="zoom-in"
