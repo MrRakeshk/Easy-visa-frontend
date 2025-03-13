@@ -7,7 +7,7 @@ import AuthProvider from "./Contexts/AuthContext/AuthProvider.jsx";
 import Home from "./Components/Pages/Home/Home.jsx";
 import SignUp from "./Components/Forms/SignUp.jsx";
 import AllVisa from "./Components/Pages/AllVisa/AllVisa.jsx";
-import AddVisa from "./Components/Forms/addVisa.jsx";
+import AddVisa from "./Components/Forms/AddVisa.jsx";
 import MyVisas from "./Components/Pages/MyVisas/MyVisas.jsx";
 import MyApplication from "./Components/Pages/MyApplications/MyApplications.jsx";
 import PrivateRoute from "./PrivateRoute/PrivateRoute.jsx";
