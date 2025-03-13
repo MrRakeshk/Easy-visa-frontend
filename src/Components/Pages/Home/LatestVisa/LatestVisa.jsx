@@ -7,7 +7,7 @@ const LatestVisas = () => {
   const navigate = useNavigate();
   const { theme, Toast } = useContext(AuthContext);
   useEffect(() => {
-    fetch("https://visaease.vercel.app/Visa")
+    fetch("https://easy-visa-backend.vercel.app/Visa")
       .then((res) => res.json())
       .then((data) => {
         const latestVisas = [...data].reverse().slice(0, 6);
