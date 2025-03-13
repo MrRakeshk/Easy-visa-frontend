@@ -1,4 +1,4 @@
-# VisaEase 🌏✈️  
+# EASYVISA 🌏✈️  
 
 VisaEase is your trusted companion for hassle-free visa application management. Whether you're planning your first trip abroad or are a seasoned traveler, VisaEase simplifies the complex visa process with an intuitive platform designed to keep your journey stress-free and well-organized.  
 
