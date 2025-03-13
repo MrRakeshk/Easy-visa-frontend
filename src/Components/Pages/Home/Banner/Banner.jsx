@@ -15,7 +15,7 @@ const Banner = () => {
       id: "slide1",
       title: "Hassle-Free Visa Assistance",
       description:
-        "Navigate the complexities of visa applications with VisaEase. Simplified steps, personalized guidance, and hassle-free processes await you!",
+        "Navigate the complexities of visa applications with EasyVisa. Simplified steps, personalized guidance, and hassle-free processes await you!",
       buttonText: "Explore Visas",
       imgSrc: slide1,
     },
