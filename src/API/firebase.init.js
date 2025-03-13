@@ -1,7 +1,7 @@
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 const firebaseConfig = {
-  apiKey: "AIzaSyAHWwg1vxloTSSG_X5B3NwrufUH8zBqGVI",
+  VITE_apiKey: "AIzaSyAHWwg1vxloTSSG_X5B3NwrufUH8zBqGVI",
   authDomain: "easy-visa-front.firebaseapp.com",
   projectId: "easy-visa-front",
   storageBucket: "easy-visa-front.firebasestorage.app",
