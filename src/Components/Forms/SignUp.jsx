@@ -129,7 +129,7 @@ const SignUp = () => {
           className="hidden md:flex w-1/2 bg-gradient-to-r from-primary to-primary/70 text-white flex-col items-center justify-center p-8"
         >
           <img src={logo} className="w-[75%] mx-auto mb-2 rounded-xl" alt="" />
-          <h2 className="text-3xl font-extrabold mb-4">Welcome to VisaEase</h2>
+          <h2 className="text-3xl font-extrabold mb-4">Welcome to EasyVisa</h2>
           <p className="text-lg text-center mb-6">
             Join us today and embark on a seamless journey to explore endless
             possibilities.
