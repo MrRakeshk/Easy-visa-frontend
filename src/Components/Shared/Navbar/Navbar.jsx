@@ -5,55 +5,46 @@ import { AuthContext } from "../../../Contexts/AuthContext/AuthProvider";
 import { FaSun, FaMoon } from "react-icons/fa";
 import { Tooltip } from "react-tooltip";
 import "react-tooltip/dist/react-tooltip.css";
+
 const NavBar = () => {
-  const { user, signOutUser, Toast, setLoading, theme, setTheme, toggleTheme } =
-    useContext(AuthContext);
+  const {
+    user,
+    signOutUser,
+    Toast,
+    setLoading,
+    theme,
+    setTheme,
+    toggleTheme,
+  } = useContext(AuthContext);
   const [isProfileOpen, setIsProfileOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scroll, setScroll] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
 
-const handleSearch = (e) => {
-  e.preventDefault();
-  if (searchQuery.trim()) {
-    navigate(`/search?country=${encodeURIComponent(searchQuery.trim())}`);
-    setSearchQuery("");
-    setIsMenuOpen(false); // closes mobile dropdown after search
-  }
-  const searchBar = (
-    <form onSubmit={handleSearch} className="flex items-center gap-2">
-      <input
-        type="text"
-        placeholder="Search country..."
-        className="input input-bordered px-2 py-1 rounded-md"
-        value={searchQuery}
-        onChange={(e) => setSearchQuery(e.target.value)}
-      />
-      <button type="submit" className="btn btn-primary px-3 py-1 rounded-md text-white">
-        Search
-      </button>
-    </form>
-  );
-};
   const navigate = useNavigate();
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    if (searchQuery.trim()) {
+      navigate(`/search?country=${encodeURIComponent(searchQuery.trim())}`);
+      setSearchQuery("");
+      setIsMenuOpen(false);
+    }
+  };
+
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 50) {
-        setScroll(true);
-      } else {
-        setScroll(false);
-      }
+      setScroll(window.scrollY > 50);
     };
     window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const toggleMenuDropdown = () => {
     setIsMenuOpen(!isMenuOpen);
     setIsProfileOpen(false);
   };
+
   const toggleProfileDropdown = () => {
     if (window.innerWidth <= 640) {
       setIsMenuOpen(false);
@@ -61,14 +52,17 @@ const handleSearch = (e) => {
     }
     setIsProfileOpen((prevState) => !prevState);
   };
+
   const showSignOutModal = (event) => {
     event.preventDefault();
     document.getElementById("signout-modal").showModal();
     toggleProfileDropdown();
   };
+
   const hideSignOutModal = () => {
     document.getElementById("signout-modal").close();
   };
+
   const handleSignOut = () => {
     signOutUser()
       .then(() => {
@@ -83,26 +77,43 @@ const handleSearch = (e) => {
       });
     hideSignOutModal();
   };
+
+  const searchBar = (
+    <form onSubmit={handleSearch} className="flex items-center gap-2">
+      <input
+        type="text"
+        placeholder="Search country..."
+        className="input input-bordered px-2 py-1 rounded-md"
+        value={searchQuery}
+        onChange={(e) => setSearchQuery(e.target.value)}
+      />
+      <button
+        type="submit"
+        className="btn btn-primary px-3 py-1 rounded-md text-white"
+      >
+        Search
+      </button>
+    </form>
+  );
+
   const navElements = (
     <ul
       className={`flex flex-col text-center lg:flex-row items-center justify-center gap-2 sm:gap-5 font-medium text-lg ${
         theme == "dark" ? "text-white" : "text-black"
       }`}
     >
-      {
-        <div className="flex sm:hidden">
-          <button
-            onClick={toggleTheme}
-            className="p-2 bg-gray-200 dark:bg-gray-800 rounded-full"
-          >
-            {theme == "light" ? (
-              <FaMoon className="text-gray-800 dark:text-yellow-500 text-xl" />
-            ) : (
-              <FaSun className="text-yellow-500 dark:text-gray-200 text-xl" />
-            )}
-          </button>
-        </div>
-      }
+      <div className="flex sm:hidden">
+        <button
+          onClick={toggleTheme}
+          className="p-2 bg-gray-200 dark:bg-gray-800 rounded-full"
+        >
+          {theme == "light" ? (
+            <FaMoon className="text-gray-800 dark:text-yellow-500 text-xl" />
+          ) : (
+            <FaSun className="text-yellow-500 dark:text-gray-200 text-xl" />
+          )}
+        </button>
+      </div>
       <NavLink onClick={toggleMenuDropdown} to="/">
         <span>Home</span>
       </NavLink>
@@ -122,6 +133,7 @@ const handleSearch = (e) => {
       )}
     </ul>
   );
+
   const navElementsEnd = (
     <div className="flex items-center justify-center sm:justify-left gap-2 mb-2 md:mb-0 sm:gap-5">
       {user && (
@@ -177,7 +189,6 @@ const handleSearch = (e) => {
             Login
           </Link>
         )}
-
         {!user && (
           <Link
             onClick={toggleMenuDropdown}
@@ -224,6 +235,7 @@ const handleSearch = (e) => {
       </div>
     </div>
   );
+
   return (
     <div
       className={`navbar shadow-md rounded-b-md container mx-auto center z-[70] w-[98%] sm:w-full md:w-[96%] py-3 px-3 md:py-4 md:px-5 flex justify-between items-center my-4 fixed top-0 left-[49.8%] sm:left-[50.7%] md:left-[50.7%] lg:left-1/2 xl:left-[50.1%]  transform -translate-x-1/2 transition-all duration-500 -translate-y-4 ${
@@ -259,6 +271,7 @@ const handleSearch = (e) => {
           </div>
         </div>
       </dialog>
+
       <div className="navbar-start">
         <Link
           to={"/"}
@@ -267,23 +280,13 @@ const handleSearch = (e) => {
           Easy <span className="text-primary">Visa</span>
         </Link>
       </div>
-      <div className="navbar-center hidden lg:flex">{navElements}</div>
+
+      <div className="navbar-center hidden lg:flex items-center gap-5">
+        {searchBar}
+        {navElements}
+      </div>
+
       <div className="navbar-end gap-2">
-        {/* {user && (
-          <div
-            tabIndex={0}
-            role="button"
-            className="sm:hidden btn btn-ghost btn-circle avatar"
-          >
-            <div className="w-[36px] rounded-full border-2 border-primary">
-              <img
-                onClick={toggleProfileDropdown}
-                alt="Profile Image"
-                src={user.photoURL || "https://i.pravatar.cc/500"}
-              />
-            </div>
-          </div>
-        )} */}
         <div className="hidden sm:flex">{navElementsEnd}</div>
         <div className="dropdown dropdown-left">
           <div
