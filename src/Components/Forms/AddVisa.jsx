@@ -76,7 +76,7 @@ const AddVisa = () => {
         Swal.fire({
           position: "center",
           icon: "error",
-          title: "Failed to add visa",
+          title: "Failed to add countries",
           showConfirmButton: false,
           timer: 1500,
         });
