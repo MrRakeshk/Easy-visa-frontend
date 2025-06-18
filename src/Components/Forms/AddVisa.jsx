@@ -323,7 +323,7 @@ const AddVisa = () => {
           type="submit"
           className="py-2 rounded-lg bg-primary/[130] text-xl w-full mt-4 text-white font-bold"
         >
-          Add Visa
+          Add Countries
         </button>
       </form>
     </div>
