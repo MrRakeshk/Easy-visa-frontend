@@ -15,6 +15,7 @@ import VisaDetails from "./Components/Pages/VisaDetails/VisaDetails.jsx";
 import ErrorPage from "./Components/Shared/Errorpage/Errorpage.jsx";
 import Login from "./Components/Forms/Login.jsx";
 import ForgotPassword from "./Components/Forms/ForgotPassword.jsx";
+import SearchResults from "./Components/Pages/SearchResults.jsx"; /
 
 const router = createBrowserRouter([
   {
@@ -75,6 +76,10 @@ const router = createBrowserRouter([
       {
         path: "/forgot-password",
         element: <ForgotPassword></ForgotPassword>,
+      },
+      {
+        path: "/search",
+        element: <SearchResults />,
       },
     ],
   },
