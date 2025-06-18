@@ -3,10 +3,9 @@ import { AuthContext } from "../../../Contexts/AuthContext/AuthProvider";
 import { FiType } from "react-icons/fi";
 import { BiTimeFive } from "react-icons/bi";
 import { RiMoneyDollarCircleLine } from "react-icons/ri";
-import { BsCalendarCheck } from "react-icons/bs";
-import { BsCalendar } from "react-icons/bs";
+import { BsCalendarCheck, BsCalendar } from "react-icons/bs";
 import { HiOutlineMail } from "react-icons/hi";
-import { FaUserAlt, FaClipboardList } from "react-icons/fa";
+import { FaUserAlt, FaClipboardList, FaMapMarkerAlt, FaExclamationTriangle } from "react-icons/fa";
 import { Helmet } from "react-helmet";
 import Swal from "sweetalert2/dist/sweetalert2.js";
 import "sweetalert2/src/sweetalert2.scss";
@@ -18,10 +17,12 @@ const MyVisaApplications = () => {
   const { user, Toast, theme } = useContext(AuthContext);
   const [applications, setApplications] = useState([]);
   const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     window.scrollTo(0, 0);
     Aos.init({ duration: 500 });
   }, []);
+
   useEffect(() => {
     fetch(`https://easy-visa-backend.vercel.app/Applications`)
       .then((response) => response.json())
@@ -49,11 +50,9 @@ const MyVisaApplications = () => {
         fetch(`https://easy-visa-backend.vercel.app/Applications/${applicationId}`, {
           method: "DELETE",
         })
-          .then((result) => {
+          .then(() => {
             setApplications(
-              applications.filter(
-                (application) => application._id !== applicationId
-              )
+              applications.filter((application) => application._id !== applicationId)
             );
           })
           .catch((error) => Toast(error.message, "error"));
@@ -68,9 +67,7 @@ const MyVisaApplications = () => {
 
   return (
     <div
-      className={`container mx-auto px-4 py-8 ${
-        theme == "dark" ? "text-white" : "text-black"
-      }`}
+      className={`container mx-auto px-4 py-8 ${theme == "dark" ? "text-white" : "text-black"}`}
     >
       <Helmet>
         <title>EasyVisa | My-Applications</title>
@@ -79,16 +76,16 @@ const MyVisaApplications = () => {
         data-aos="zoom-in"
         className="text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-6 text-primary"
       >
-        My Visa Applications 📝✈️
+        My Visa Applications 📋✈️
       </h1>
 
       <p
         data-aos="zoom-in"
         className="text-xl w-[90%] md:w-[70%] lg:w-[50%] mx-auto text-center text-gray-500 mb-6"
       >
-        Track and manage all your visa applications in one place. Stay updated
-        on the status of each application.
+        Track and manage all your visa applications in one place. Stay updated on the status of each application.
       </p>
+
       {loading ? (
         <div className="flex items-center justify-center h-screen">
           <HashLoader color="#387478" size={110} />
@@ -104,9 +101,7 @@ const MyVisaApplications = () => {
               {applications.map((application) => (
                 <div
                   key={application._id}
-                  className={`${
-                    theme == "dark" ? "bg-gray-950" : "bg-white"
-                  } p-2 rounded-lg shadow-lg text-lg flex flex-col`}
+                  className={`${theme == "dark" ? "bg-gray-950" : "bg-white"} p-2 rounded-lg shadow-lg text-lg flex flex-col`}
                 >
                   <img
                     data-aos="fade-up"
@@ -118,74 +113,50 @@ const MyVisaApplications = () => {
                     <h3 className="font-bold text-xl mb-2">
                       {application.countryName}
                     </h3>
-                    <p
-                      className={`flex flex-wrap items-center gap-2 ${
-                        theme == "dark" ? "text-white" : "text-gray-700"
-                      }`}
-                    >
+                    <p className="flex flex-wrap items-center gap-2">
                       <FiType className="text-green-500 text-xl" />
                       <strong>Visa Type:</strong> {application.visaType}
                     </p>
-                    <p
-                      className={`flex flex-wrap items-center gap-2 ${
-                        theme == "dark" ? "text-white" : "text-gray-700"
-                      }`}
-                    >
-                      <BiTimeFive className="inline-block text-blue-500 text-xl" />
-                      <strong> Processing Time:</strong>{" "}
-                      {application.processingTime}
+                    <p className="flex flex-wrap items-center gap-2">
+                      <BiTimeFive className="text-blue-500 text-xl" />
+                      <strong>Processing Time:</strong> {application.processingTime}
                     </p>
-                    <p
-                      className={`flex flex-wrap items-center gap-2 ${
-                        theme == "dark" ? "text-white" : "text-gray-700"
-                      }`}
-                    >
-                      <RiMoneyDollarCircleLine className="inline-block text-green-600 text-xl" />
-                      <strong> Fee:</strong> ${application.fee}
+                    <p className="flex flex-wrap items-center gap-2">
+                      <RiMoneyDollarCircleLine className="text-green-600 text-xl" />
+                      <strong>Fee:</strong> ${application.fee}
                     </p>
-                    <p
-                      className={`flex flex-wrap items-center gap-2 ${
-                        theme == "dark" ? "text-white" : "text-gray-700"
-                      }`}
-                    >
-                      <BsCalendarCheck className="inline-block text-purple-500 text-xl" />
-                      <strong> Validity:</strong> {application.validity}
+                    <p className="flex flex-wrap items-center gap-2">
+                      <BsCalendarCheck className="text-purple-500 text-xl" />
+                      <strong>Validity:</strong> {application.validity}
                     </p>
-                    <p
-                      className={`flex flex-wrap items-center gap-2 ${
-                        theme == "dark" ? "text-white" : "text-gray-700"
-                      }`}
-                    >
-                      <FaClipboardList className="inline-block text-teal-500 text-xl" />
-                      <strong> Application Method:</strong>{" "}
-                      {application.applicationMethod}
+                    <p className="flex flex-wrap items-center gap-2">
+                      <FaClipboardList className="text-teal-500 text-xl" />
+                      <strong>Application Method:</strong> {application.applicationMethod}
                     </p>
-                    <p
-                      className={`flex flex-wrap items-center gap-2 ${
-                        theme == "dark" ? "text-white" : "text-gray-700"
-                      }`}
-                    >
-                      <BsCalendar className="inline text-purple-500 text-xl" />
-                      <strong> Applied Date:</strong>{" "}
-                      {new Date(application.appliedDate).toLocaleDateString()}
+                    <p className="flex flex-wrap items-center gap-2">
+                      <BsCalendar className="text-purple-500 text-xl" />
+                      <strong>Applied Date:</strong> {new Date(application.appliedDate).toLocaleDateString()}
                     </p>
-                    <p
-                      className={`flex flex-wrap items-center gap-2 ${
-                        theme == "dark" ? "text-white" : "text-gray-700"
-                      }`}
-                    >
-                      <FaUserAlt className="inline-block text-orange-500 text-xl" />
-                      <strong> Applicant's Name:</strong>{" "}
-                      {`${application.firstName} ${application.lastName}`}
+                    <p className="flex flex-wrap items-center gap-2">
+                      <FaUserAlt className="text-orange-500 text-xl" />
+                      <strong>Applicant's Name:</strong> {`${application.firstName} ${application.lastName}`}
                     </p>
-                    <p
-                      className={`flex flex-wrap items-center gap-2 ${
-                        theme == "dark" ? "text-white" : "text-gray-700"
-                      }`}
-                    >
-                      <HiOutlineMail className="inline-block text-teal-500 text-xl" />
-                      <strong> Applicant's Email:</strong> {application.email}
+                    <p className="flex flex-wrap items-center gap-2">
+                      <HiOutlineMail className="text-teal-500 text-xl" />
+                      <strong>Applicant's Email:</strong> {application.email}
                     </p>
+                    {application.touristPlaces && (
+                      <p className="flex flex-wrap items-center gap-2">
+                        <FaMapMarkerAlt className="text-blue-400 text-xl" />
+                        <strong>Tourist Places:</strong> {application.touristPlaces}
+                      </p>
+                    )}
+                    {application.dangerousPlaces && (
+                      <p className="flex flex-wrap items-center gap-2">
+                        <FaExclamationTriangle className="text-red-500 text-xl" />
+                        <strong>Dangerous Places:</strong> {application.dangerousPlaces}
+                      </p>
+                    )}
                   </div>
                   <button
                     data-aos="fade-up"
