@@ -88,9 +88,6 @@ const NavBar = () => {
       <NavLink to={"/add-visa"} onClick={toggleMenuDropdown}>
         <span>Add Country</span>
       </NavLink>
-      //<NavLink onClick={toggleMenuDropdown} to="/my-visa">
-        //<span className="block text-center">My Visas</span>
-     // </NavLink>
       <NavLink onClick={toggleMenuDropdown} to="/my-applications">
         <span className="block text-center">My Applications</span>
       </NavLink>
