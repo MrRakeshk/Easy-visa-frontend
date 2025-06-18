@@ -5,7 +5,7 @@ import { FiType } from "react-icons/fi";
 import { BiTimeFive } from "react-icons/bi";
 import { AiOutlineFileText } from "react-icons/ai";
 import { MdDescription } from "react-icons/md";
-import { FaBirthdayCake } from "react-icons/fa";
+import { FaBirthdayCake, FaMapMarkerAlt, FaExclamationTriangle } from "react-icons/fa";
 import { RiMoneyDollarCircleLine } from "react-icons/ri";
 import { BsCalendarCheck } from "react-icons/bs";
 import { HiOutlineMail } from "react-icons/hi";
@@ -111,79 +111,50 @@ const VisaDetails = () => {
           className="rounded-lg w-[60%] mx-auto object-cover mb-4 border-2 border-gray-100"
         />
         <div className="max-w-2xl mx-auto w-fit space-y-2">
-          <p
-            data-aos="fade-right"
-            className={`flex items-center gap-4 ${
-              theme == "dark" ? "text-white" : "text-gray-700"
-            }`}
-          >
+          <p data-aos="fade-right" className={`flex items-center gap-4 ${theme == "dark" ? "text-white" : "text-gray-700"}`}>
             <FiType className="text-green-500 text-xl" />
             <strong>Visa Type:</strong> {visa.visaType}
           </p>
-          <p
-            data-aos="fade-left"
-            className={`flex items-center gap-4 ${
-              theme == "dark" ? "text-white" : "text-gray-700"
-            }`}
-          >
+          <p data-aos="fade-left" className={`flex items-center gap-4 ${theme == "dark" ? "text-white" : "text-gray-700"}`}>
             <BiTimeFive className="text-blue-500 text-xl" />
             <strong>Processing Time:</strong> {visa.processingTime}
           </p>
-          <p
-            data-aos="fade-right"
-            className={`flex items-center gap-4 ${
-              theme == "dark" ? "text-white" : "text-gray-700"
-            }`}
-          >
+          <p data-aos="fade-right" className={`flex items-center gap-4 ${theme == "dark" ? "text-white" : "text-gray-700"}`}>
             <AiOutlineFileText className="text-indigo-500 text-xl" />
-            <strong>Required Documents:</strong>{" "}
-            {visa.requiredDocuments.join(", ")}
+            <strong>Required Documents:</strong> {visa.requiredDocuments.join(", ")}
           </p>
-          <p
-            data-aos="fade-left"
-            className={`flex items-center gap-4 ${
-              theme == "dark" ? "text-white" : "text-gray-700"
-            }`}
-          >
+          <p data-aos="fade-left" className={`flex items-center gap-4 ${theme == "dark" ? "text-white" : "text-gray-700"}`}>
             <MdDescription className="text-yellow-500 text-xl" />
             <strong>Description:</strong> {visa.description}
           </p>
-          <p
-            data-aos="fade-right"
-            className={`flex items-center gap-4 ${
-              theme == "dark" ? "text-white" : "text-gray-700"
-            }`}
-          >
+          <p data-aos="fade-right" className={`flex items-center gap-4 ${theme == "dark" ? "text-white" : "text-gray-700"}`}>
             <FaBirthdayCake className="text-pink-500 text-xl" />
             <strong>Age Restriction:</strong> {visa.ageRestriction} years
           </p>
-          <p
-            data-aos="fade-left"
-            className={`flex items-center gap-4 ${
-              theme == "dark" ? "text-white" : "text-gray-700"
-            }`}
-          >
+          <p data-aos="fade-left" className={`flex items-center gap-4 ${theme == "dark" ? "text-white" : "text-gray-700"}`}>
             <RiMoneyDollarCircleLine className="text-green-600 text-xl" />
             <strong>Fee:</strong> ${visa.fee}
           </p>
-          <p
-            data-aos="fade-right"
-            className={`flex items-center gap-4 ${
-              theme == "dark" ? "text-white" : "text-gray-700"
-            }`}
-          >
+          <p data-aos="fade-right" className={`flex items-center gap-4 ${theme == "dark" ? "text-white" : "text-gray-700"}`}>
             <BsCalendarCheck className="text-purple-500 text-xl" />
             <strong>Validity:</strong> {visa.validity}
           </p>
-          <p
-            data-aos="fade-left"
-            className={`flex items-center gap-4 ${
-              theme == "dark" ? "text-white" : "text-gray-700"
-            }`}
-          >
+          <p data-aos="fade-left" className={`flex items-center gap-4 ${theme == "dark" ? "text-white" : "text-gray-700"}`}>
             <HiOutlineMail className="text-teal-500 text-xl" />
             <strong>Application Method:</strong> {visa.applicationMethod}
           </p>
+          {visa.touristPlaces && (
+            <p data-aos="fade-right" className={`flex items-center gap-4 ${theme == "dark" ? "text-white" : "text-gray-700"}`}>
+              <FaMapMarkerAlt className="text-blue-400 text-xl" />
+              <strong>Tourist Places:</strong> {visa.touristPlaces}
+            </p>
+          )}
+          {visa.dangerousPlaces && (
+            <p data-aos="fade-left" className={`flex items-center gap-4 ${theme == "dark" ? "text-white" : "text-gray-700"}`}>
+              <FaExclamationTriangle className="text-red-500 text-xl" />
+              <strong>Dangerous Places:</strong> {visa.dangerousPlaces}
+            </p>
+          )}
         </div>
         <button
           data-aos="fade-right"
@@ -195,86 +166,37 @@ const VisaDetails = () => {
       </div>
 
       {isModalOpen && (
-        <div
-          className={`fixed inset-0 flex items-center justify-center ${
-            theme == "dark" ? "text-white" : "text-black"
-          } z-50`}
-        >
+        <div className={`fixed inset-0 flex items-center justify-center ${theme == "dark" ? "text-white" : "text-black"} z-50`}>
           <div className="modal-box w-full max-w-lg  rounded-lg shadow-lg p-6">
-            <h2
-              data-aos="zoom-in"
-              className="text-2xl font-bold text-primary mb-4"
-            >
+            <h2 data-aos="zoom-in" className="text-2xl font-bold text-primary mb-4">
               Apply for {visa.countryName} Visa
             </h2>
             <form onSubmit={handleApply}>
               <div data-aos="fade-left" className="mb-4">
                 <label className="block font-medium">Email</label>
-                <input
-                  type="email"
-                  name="email"
-                  value={formData.email}
-                  readOnly
-                  className="input input-bordered w-full"
-                />
+                <input type="email" name="email" value={formData.email} readOnly className="input input-bordered w-full" />
               </div>
               <div data-aos="fade-right" className="mb-4">
                 <label className="block font-medium">First Name</label>
-                <input
-                  type="text"
-                  name="firstName"
-                  value={formData.firstName}
-                  onChange={handleInputChange}
-                  className="input input-bordered w-full"
-                  required
-                />
+                <input type="text" name="firstName" value={formData.firstName} onChange={handleInputChange} className="input input-bordered w-full" required />
               </div>
               <div data-aos="fade-left" className="mb-4">
                 <label className="block font-medium">Last Name</label>
-                <input
-                  type="text"
-                  name="lastName"
-                  value={formData.lastName}
-                  onChange={handleInputChange}
-                  className="input input-bordered w-full"
-                  required
-                />
+                <input type="text" name="lastName" value={formData.lastName} onChange={handleInputChange} className="input input-bordered w-full" required />
               </div>
               <div data-aos="fade-right" className="mb-4">
                 <label className="block font-medium">Applied Date</label>
-                <input
-                  type="date"
-                  name="appliedDate"
-                  value={formData.appliedDate}
-                  readOnly
-                  className="input input-bordered w-full"
-                />
+                <input type="date" name="appliedDate" value={formData.appliedDate} readOnly className="input input-bordered w-full" />
               </div>
               <div data-aos="fade-left" className="mb-4">
                 <label className="block font-medium">Fee</label>
-                <input
-                  type="number"
-                  name="fee"
-                  value={formData.fee}
-                  readOnly
-                  className="input input-bordered w-full"
-                />
+                <input type="number" name="fee" value={formData.fee} readOnly className="input input-bordered w-full" />
               </div>
-              <div
-                data-aos="fade-right"
-                className="modal-action flex justify-end"
-              >
-                <button
-                  type="button"
-                  onClick={() => setIsModalOpen(false)}
-                  className="px-4 py-1 rounded-lg bg-red-600 text-white text-lg font-semibold"
-                >
+              <div data-aos="fade-right" className="modal-action flex justify-end">
+                <button type="button" onClick={() => setIsModalOpen(false)} className="px-4 py-1 rounded-lg bg-red-600 text-white text-lg font-semibold">
                   Cancel
                 </button>
-                <button
-                  type="submit"
-                  className="px-4 py-1 rounded-lg bg-green-600 text-white text-lg font-semibold"
-                >
+                <button type="submit" className="px-4 py-1 rounded-lg bg-green-600 text-white text-lg font-semibold">
                   Apply
                 </button>
               </div>
@@ -287,3 +209,4 @@ const VisaDetails = () => {
 };
 
 export default VisaDetails;
+
