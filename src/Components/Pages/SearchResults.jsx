@@ -1,7 +1,7 @@
 // pages/SearchResults.jsx
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import VisaCard from "../components/VisaCard"; // adjust path
+import VisaCard from "../../Cards/VisaCard"; // adjust path
 
 const SearchResults = () => {
   const [visas, setVisas] = useState([]);
