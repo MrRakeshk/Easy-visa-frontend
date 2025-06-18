@@ -19,13 +19,18 @@ const AddVisa = () => {
     fee: "",
     validity: "",
     applicationMethod: "",
+    touristPlaces: "",              // ✅ Added
+    dangerousPlaces: "",           // ✅ Added
     addedBy: "",
   });
+
   const { user, theme } = useContext(AuthContext);
+
   useEffect(() => {
     window.scrollTo(0, 0);
     Aos.init({ duration: 500 });
   }, []);
+
   const handleInputChange = (e) => {
     const { name, value, type, checked } = e.target;
 
@@ -40,6 +45,7 @@ const AddVisa = () => {
       setVisaData({ ...visaData, [name]: value });
     }
   };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     visaData.addedBy = user.email;
@@ -68,6 +74,8 @@ const AddVisa = () => {
           fee: "",
           validity: "",
           applicationMethod: "",
+          touristPlaces: "",       // ✅ Reset
+          dangerousPlaces: "",    // ✅ Reset
           addedBy: "",
         });
         e.target.reset();
@@ -86,34 +94,31 @@ const AddVisa = () => {
   return (
     <div
       className={`container ${
-        theme == "dark" ? "text-white" : "text-black"
+        theme === "dark" ? "text-white" : "text-black"
       } mx-auto px-4 py-8`}
     >
       <Helmet>
-        <title>VisaEase | Add-Visa</title>
+        <title>VisaEase | Add Country</title> {/* ✅ Updated title */}
       </Helmet>
       <h1
         data-aos="zoom-in"
         className="text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-4 text-primary"
       >
-        Add New Visa 🌍✈️
+        Add New Country 🌍✈️
       </h1>
 
       <p data-aos="zoom-in" className="text-xl text-center text-gray-500 mb-8">
-        Enter the necessary details to add a new visa and make it available for
-        applicants.
+        Enter the necessary details to add a new country and its visa information.
       </p>
+
       <form
         onSubmit={handleSubmit}
         className={`${
-          theme == "dark" ? "bg-gray-950" : "bg-white"
+          theme === "dark" ? "bg-gray-950" : "bg-white"
         } shadow-lg rounded-lg p-6 max-w-3xl mx-auto`}
       >
         <div data-aos="fade-up" className="mb-4">
-          <label
-            className="block text-lg font-semibold mb-2"
-            htmlFor="countryImage"
-          >
+          <label className="block text-lg font-semibold mb-2" htmlFor="countryImage">
             Country Image URL
           </label>
           <input
@@ -129,10 +134,7 @@ const AddVisa = () => {
         </div>
 
         <div data-aos="fade-up" className="mb-4">
-          <label
-            className="block text-lg font-semibold mb-2"
-            htmlFor="countryName"
-          >
+          <label className="block text-lg font-semibold mb-2" htmlFor="countryName">
             Country Name
           </label>
           <input
@@ -148,10 +150,7 @@ const AddVisa = () => {
         </div>
 
         <div data-aos="fade-up" className="mb-4 w-full">
-          <label
-            className="block text-lg font-semibold mb-2"
-            htmlFor="visaType"
-          >
+          <label className="block text-lg font-semibold mb-2" htmlFor="visaType">
             Visa Type
           </label>
           <select
@@ -162,7 +161,7 @@ const AddVisa = () => {
             className="select select-bordered"
             required
           >
-            <option value="" disabled="true">
+            <option value="" disabled>
               Select Visa Type
             </option>
             <option value="Tourist Visa">Tourist Visa</option>
@@ -172,10 +171,7 @@ const AddVisa = () => {
         </div>
 
         <div data-aos="fade-up" className="mb-4">
-          <label
-            className="block text-lg font-semibold mb-2"
-            htmlFor="processingTime"
-          >
+          <label className="block text-lg font-semibold mb-2" htmlFor="processingTime">
             Processing Time
           </label>
           <input
@@ -191,48 +187,25 @@ const AddVisa = () => {
         </div>
 
         <div data-aos="fade-up" className="mb-4">
-          <label className="block text-lg font-semibold mb-2">
-            Required Documents
-          </label>
+          <label className="block text-lg font-semibold mb-2">Required Documents</label>
           <div className="flex flex-wrap gap-4">
-            <label className="flex items-center gap-2">
-              <input
-                type="checkbox"
-                name="requiredDocuments"
-                value="Passport"
-                onChange={handleInputChange}
-                className="checkbox"
-              />
-              Passport
-            </label>
-            <label className="flex items-center gap-2">
-              <input
-                type="checkbox"
-                name="requiredDocuments"
-                value="Visa application form"
-                onChange={handleInputChange}
-                className="checkbox"
-              />
-              Visa Application Form
-            </label>
-            <label className="flex items-center gap-2">
-              <input
-                type="checkbox"
-                name="requiredDocuments"
-                value="Recent passport-sized photo"
-                onChange={handleInputChange}
-                className="checkbox"
-              />
-              Recent Passport-Sized Photo
-            </label>
+            {["Passport", "Visa application form", "Recent passport-sized photo"].map((doc) => (
+              <label key={doc} className="flex items-center gap-2">
+                <input
+                  type="checkbox"
+                  name="requiredDocuments"
+                  value={doc}
+                  onChange={handleInputChange}
+                  className="checkbox"
+                />
+                {doc}
+              </label>
+            ))}
           </div>
         </div>
 
         <div data-aos="fade-up" className="mb-4">
-          <label
-            className="block text-lg font-semibold mb-2"
-            htmlFor="description"
-          >
+          <label className="block text-lg font-semibold mb-2" htmlFor="description">
             Description
           </label>
           <textarea
@@ -247,10 +220,7 @@ const AddVisa = () => {
         </div>
 
         <div data-aos="fade-up" className="mb-4">
-          <label
-            className="block text-lg font-semibold mb-2"
-            htmlFor="ageRestriction"
-          >
+          <label className="block text-lg font-semibold mb-2" htmlFor="ageRestriction">
             Age Restriction
           </label>
           <input
@@ -281,10 +251,7 @@ const AddVisa = () => {
         </div>
 
         <div data-aos="fade-up" className="mb-4">
-          <label
-            className="block text-lg font-semibold mb-2"
-            htmlFor="validity"
-          >
+          <label className="block text-lg font-semibold mb-2" htmlFor="validity">
             Validity Period
           </label>
           <input
@@ -300,10 +267,7 @@ const AddVisa = () => {
         </div>
 
         <div data-aos="fade-up" className="mb-4">
-          <label
-            className="block text-lg font-semibold mb-2"
-            htmlFor="applicationMethod"
-          >
+          <label className="block text-lg font-semibold mb-2" htmlFor="applicationMethod">
             Application Method
           </label>
           <input
@@ -318,12 +282,46 @@ const AddVisa = () => {
           />
         </div>
 
+        {/* ✅ Tourist Places */}
+        <div data-aos="fade-up" className="mb-4">
+          <label className="block text-lg font-semibold mb-2" htmlFor="touristPlaces">
+            Famous Tourist Places
+          </label>
+          <input
+            type="text"
+            id="touristPlaces"
+            name="touristPlaces"
+            placeholder="E.g., Eiffel Tower, Louvre Museum"
+            value={visaData.touristPlaces}
+            onChange={handleInputChange}
+            className="input input-bordered w-full"
+            required
+          />
+        </div>
+
+        {/* ✅ Dangerous Places */}
+        <div data-aos="fade-up" className="mb-4">
+          <label className="block text-lg font-semibold mb-2" htmlFor="dangerousPlaces">
+            Dangerous Places (if any)
+          </label>
+          <input
+            type="text"
+            id="dangerousPlaces"
+            name="dangerousPlaces"
+            placeholder="E.g., Conflict zones"
+            value={visaData.dangerousPlaces}
+            onChange={handleInputChange}
+            className="input input-bordered w-full"
+          />
+        </div>
+
+        {/* ✅ Updated Button Text */}
         <button
           data-aos="fade-up"
           type="submit"
           className="py-2 rounded-lg bg-primary/[130] text-xl w-full mt-4 text-white font-bold"
         >
-          Add Countries
+          Add Country
         </button>
       </form>
     </div>
